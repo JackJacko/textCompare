@@ -8,7 +8,7 @@ app = Flask(__name__)
 api = Api(app)
 
 client = MongoClient("mongodb://db:27017")
-db = client.strStorageDB
+db = client.txtCompareDB
 Users = db["Users"]
 
 def verify_pw(usr, pwd):
@@ -58,7 +58,6 @@ class Register(Resource):
         Users.insert_one({
             "Username": usr,
             "Password": h_pwd,
-            "Sentence": "",
             "Tokens": 10
         })
         # confirm successful registration
